@@ -1,0 +1,7 @@
+{
+  "rules": {
+    "quizzes": { ".read": "auth != null", ".write": "auth != null" },
+    "results": { ".read": "auth != null", ".write": "auth != null" },
+    "games":   { ".read": true, ".write": true }
+  }
+}

@@ -1,0 +1,215 @@
+/* =========================================================
+   QUIZ ARENA — SHARED STYLES
+   Colours come from config.js via theme.js.
+   Font: Cambria (Windows / Office computers).
+         Phones and Macs don't have Cambria, so they use "Caladea",
+         a free look-alike of Cambria loaded from Google Fonts.
+   ========================================================= */
+@import url("https://fonts.googleapis.com/css2?family=Caladea:ital,wght@0,400;0,700;1,400&display=swap");
+
+:root   { --cb-font: Cambria, "Caladea", Georgia, "Times New Roman", serif; }
+body    { margin: 0; font-family: var(--cb-font); background: var(--cb-bg); color: var(--cb-dark); }
+/* Buttons and form boxes don't inherit the page font by default — make them use Cambria too */
+button, input, select, textarea { font-family: inherit; }
+
+/* ---- Header ---- */
+.topbar { display: flex; align-items: center; gap: 14px; padding: 8px 20px;
+          background: var(--cb-white); border-bottom: 4px solid var(--cb-amber);
+          box-shadow: 0 2px 10px rgba(0,0,0,.06); }
+.topbar img { height: 76px; margin: -8px 0; }
+.brand  { border-left: 2px solid #E3E5E5; padding-left: 14px; }
+.brand strong { color: var(--cb-dark); font-size: 18px; }
+.brand small  { display: block; color: var(--cb-grey); font-size: 13px; }
+
+/* ---- Layout ---- */
+main    { max-width: 1000px; margin: 0 auto; padding: 24px 16px; }
+.card   { background: var(--cb-white); border-radius: 14px; padding: 24px; margin-bottom: 16px;
+          border-top: 4px solid var(--cb-amber); box-shadow: 0 2px 12px rgba(0,0,0,.05); }
+h1, h2  { margin: 0 0 8px; color: var(--cb-dark); }
+p       { color: var(--cb-grey); }
+
+/* ---- Buttons ---- */
+.btn    { background: var(--cb-amber); color: var(--cb-dark); border: 0; border-radius: 10px;
+          padding: 12px 24px; font-size: 16px; font-weight: 700; cursor: pointer; }
+.btn:hover { filter: brightness(.95); }
+
+/* ---- Answer tiles (used from Step 6) ---- */
+.options { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.opt     { color: #fff; font-weight: 700; font-size: 20px; padding: 20px; border-radius: 12px; }
+.o0 { background: var(--opt0); }  .o1 { background: var(--opt1); }
+.o2 { background: var(--opt2); }  .o3 { background: var(--opt3); }
+
+/* ---- Forms (added in Step 4) ---- */
+.narrow  { max-width: 420px; margin: 40px auto; }
+label    { display: block; font-weight: 700; font-size: 14px; margin-bottom: 6px; color: var(--cb-dark); }
+input, select, textarea {
+  width: 100%; box-sizing: border-box; padding: 12px 14px; margin-bottom: 14px;
+  font-size: 16px; border: 2px solid #E3E5E5; border-radius: 10px; background: var(--cb-white); color: var(--cb-dark);
+}
+input:focus, select:focus, textarea:focus { outline: none; border-color: var(--cb-amber); }
+.btn.full  { width: 100%; }
+.btn.ghost { background: transparent; border: 2px solid #E3E5E5; color: var(--cb-dark); }
+.btn:disabled { opacity: .5; cursor: not-allowed; }
+.btn:focus-visible { outline: 3px solid var(--cb-dark); outline-offset: 2px; }
+.btn:focus:not(:focus-visible) { outline: none; }
+.error   { color: #C62828; font-weight: 600; min-height: 1.4em; margin: 0 0 10px; }
+.row     { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.spacer  { flex: 1; }
+.hidden  { display: none !important; }
+.pin-input { text-align: center; font-size: 28px; letter-spacing: 8px; font-weight: 700; }
+
+/* ---- Quiz manager (added in Step 5) ---- */
+.page-head { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 16px; }
+.page-head h1 { margin: 0; }
+.quiz-item { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; padding: 14px 16px;
+             border: 2px solid #E3E5E5; border-radius: 12px; margin-bottom: 10px; background: var(--cb-white); }
+.quiz-item h3 { margin: 0 0 2px; }
+.quiz-item .meta { color: var(--cb-grey); font-size: 13px; }
+.btn.small { padding: 8px 14px; font-size: 14px; }
+.btn.danger { background: transparent; border: 2px solid #F3C4C4; color: #C62828; }
+.empty { text-align: center; padding: 30px; color: var(--cb-grey); }
+
+.q-card { border: 2px solid #E3E5E5; border-left: 6px solid var(--cb-amber); border-radius: 12px;
+          padding: 16px; margin-bottom: 14px; background: var(--cb-white); }
+.q-card .q-top { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+.q-card .q-num { font-weight: 800; color: var(--cb-dark); }
+.q-card textarea { min-height: 60px; resize: vertical; font-family: inherit; }
+.opt-row { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+.opt-row input[type=text] { margin: 0; }
+.opt-row .swatch { width: 38px; height: 38px; border-radius: 8px; color: #fff; display: grid;
+                   place-items: center; font-weight: 800; flex-shrink: 0; }
+.opt-row label.correct { display: flex; align-items: center; gap: 6px; margin: 0; font-size: 13px;
+                         white-space: nowrap; cursor: pointer; }
+.opt-row input[type=radio] { width: 18px; height: 18px; margin: 0; accent-color: #26890C; }
+.q-card .time-row { display: flex; align-items: center; gap: 10px; margin-top: 10px; }
+.q-card .time-row select { width: auto; margin: 0; }
+.icon-btn { background: none; border: 0; font-size: 18px; cursor: pointer; padding: 4px 8px; border-radius: 6px; }
+.icon-btn:hover { background: #F0F1F1; }
+.icon-btn:disabled { opacity: .3; cursor: default; }
+.save-bar { position: sticky; bottom: 0; background: var(--cb-bg); padding: 12px 0; display: flex; gap: 12px;
+            align-items: center; border-top: 2px solid #E3E5E5; }
+.ok-msg { color: #26890C; font-weight: 700; }
+
+/* ---- Host lobby (added in Step 6) ---- */
+.host-bar { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 16px; }
+.host-bar h1 { margin: 0; }
+.lobby { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.join-box { text-align: center; }
+.join-step { color: var(--cb-grey); font-size: 18px; margin: 6px 0; }
+.join-url { display: inline-block; font-size: 22px; font-weight: 800; color: var(--cb-dark);
+            background: #FFF6E6; border: 2px dashed var(--cb-amber); border-radius: 10px; padding: 8px 16px; word-break: break-all; }
+.pin-label { text-transform: uppercase; letter-spacing: 3px; font-size: 14px; color: var(--cb-grey); margin-top: 18px; }
+.pin-big { font-size: 84px; font-weight: 900; letter-spacing: 10px; color: var(--cb-dark); line-height: 1.1; }
+#qr { display: inline-block; padding: 10px; background: #fff; border: 2px solid #E3E5E5; border-radius: 12px; margin-top: 10px; }
+#qr:empty { display: none; }
+.count-big { font-size: 56px; font-weight: 900; color: var(--cb-amber); line-height: 1; }
+.players { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+.chip { background: #FFF6E6; border: 2px solid var(--cb-amber); color: var(--cb-dark); font-weight: 700;
+        padding: 8px 14px; border-radius: 999px; animation: pop .3s ease; }
+@keyframes pop { from { transform: scale(.4); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+@media (max-width: 800px) { .lobby { grid-template-columns: 1fr; } .pin-big { font-size: 56px; } }
+
+/* ---- Teams + player page (added in Step 7) ---- */
+.chip small { font-weight: 400; color: var(--cb-grey); }
+.chip-x { background: none; border: 0; cursor: pointer; color: var(--cb-grey); font-size: 13px; padding: 0 0 0 4px; }
+.chip-x:hover { color: #C62828; }
+body.player main { padding: 16px 12px; }
+body.player .topbar { padding: 6px 14px; }
+body.player .topbar img { height: 60px; margin: -6px 0; }
+.me { text-align: right; font-weight: 700; font-size: 14px; color: var(--cb-dark); }
+.me small { display: block; font-weight: 400; color: var(--cb-grey); }
+.quiz-name { background: #FFF6E6; border-radius: 10px; padding: 10px 14px; margin-bottom: 14px; font-weight: 700; }
+.link-btn { background: none; border: 0; color: var(--cb-grey); text-decoration: underline; cursor: pointer; font-size: 14px; margin-top: 10px; }
+.big-msg { text-align: center; padding: 40px 20px; }
+.big-msg .emoji { font-size: 64px; line-height: 1; margin-bottom: 10px; }
+.big-msg h2 { font-size: 26px; }
+.spinner { width: 40px; height: 40px; border: 5px solid #E3E5E5; border-top-color: var(--cb-amber);
+           border-radius: 50%; margin: 18px auto 0; animation: spin 1s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ---- Live questions (Step 8) ---- */
+.q-head { display: flex; align-items: center; gap: 16px; margin-bottom: 14px; }
+.q-counter { text-transform: uppercase; letter-spacing: 2px; font-size: 13px; color: var(--cb-grey); }
+.answered { font-weight: 800; font-size: 20px; color: var(--cb-dark); }
+.timer { width: 86px; height: 86px; border-radius: 50%; background: var(--cb-amber); color: var(--cb-dark);
+         display: grid; place-items: center; font-size: 36px; font-weight: 900; flex-shrink: 0; }
+.timer.low { background: #E21B3C; color: #fff; animation: pulse .5s infinite alternate; }
+@keyframes pulse { to { transform: scale(1.08); } }
+.question-text { background: var(--cb-white); border-radius: 14px; padding: 26px; text-align: center;
+                 font-size: 32px; font-weight: 800; color: var(--cb-dark); box-shadow: 0 2px 12px rgba(0,0,0,.06);
+                 margin-bottom: 16px; border-top: 4px solid var(--cb-amber); }
+.opt { display: flex; align-items: center; gap: 14px; min-height: 80px; transition: opacity .3s; }
+.opt .shape { font-size: 28px; }
+.opt.dim { opacity: .3; }
+.opt.correct { box-shadow: 0 0 0 5px var(--cb-dark) inset; }
+.opt .tick { margin-left: auto; font-size: 28px; }
+
+.bars { display: flex; gap: 18px; align-items: flex-end; justify-content: center; height: 220px; margin: 10px 0 16px; }
+.bar-wrap { display: flex; flex-direction: column; align-items: center; gap: 6px; height: 100%; justify-content: flex-end; }
+.bar { width: 90px; min-height: 36px; border-radius: 10px 10px 0 0; color: #fff; font-weight: 900; font-size: 20px;
+       text-align: center; padding-top: 6px; box-sizing: border-box; transition: height .8s ease; }
+.bar-label { font-size: 24px; color: var(--cb-dark); }
+.center { text-align: center; }
+
+/* Phone answer buttons */
+.p-status { display: flex; justify-content: space-between; font-weight: 800; color: var(--cb-dark); margin-bottom: 10px; }
+.answer-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; height: calc(100vh - 190px); min-height: 320px; }
+.answer-grid.two { grid-template-columns: 1fr; }
+.answer-grid .opt { flex-direction: column; justify-content: center; text-align: center; border: 0; cursor: pointer;
+                    font-size: 18px; font-family: inherit; min-height: 0; }
+.answer-grid .opt .shape { font-size: 44px; }
+.answer-grid .opt:active { transform: scale(.97); }
+.big-msg.good { background: #26890C; } .big-msg.bad { background: #E21B3C; }
+.big-msg.good h2, .big-msg.bad h2, .big-msg.good p, .big-msg.bad p { color: #fff; }
+@media (max-width: 700px) { .question-text { font-size: 22px; } .bar { width: 60px; } }
+
+/* ---- Scores, leaderboard, podium (Step 9) ---- */
+.lb-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 16px; }
+.lb-row { display: flex; align-items: center; gap: 14px; padding: 12px 16px; margin-bottom: 8px;
+          background: #FAFAFA; border: 2px solid #EEF0F0; border-radius: 12px; font-size: 20px; font-weight: 700;
+          color: var(--cb-dark); animation: slideIn .35s ease both; }
+.lb-row.top { background: #FFF6E6; border-color: var(--cb-amber); }
+.lb-row .rank { width: 36px; height: 36px; border-radius: 50%; background: var(--cb-amber); color: var(--cb-dark);
+                display: grid; place-items: center; font-weight: 900; font-size: 16px; flex-shrink: 0; }
+.lb-row .who small { display: block; font-size: 13px; font-weight: 400; color: var(--cb-grey); }
+.lb-row .pts { margin-left: auto; font-weight: 900; }
+.lb-row .gain { font-size: 14px; color: #26890C; margin-left: 8px; font-weight: 700; }
+@keyframes slideIn { from { opacity: 0; transform: translateX(-20px); } to { opacity: 1; transform: none; } }
+
+.podium { display: flex; align-items: flex-end; justify-content: center; gap: 14px; margin: 10px 0 24px; }
+.pod { width: 180px; text-align: center; }
+.pod .name { font-weight: 900; font-size: 20px; color: var(--cb-dark); word-break: break-word; }
+.pod .team { font-size: 13px; color: var(--cb-grey); margin-bottom: 8px; }
+.pod .block { border-radius: 12px 12px 0 0; display: grid; place-items: center; font-size: 46px; font-weight: 900;
+              color: var(--cb-dark); transform-origin: bottom; animation: rise .8s ease both; }
+.pod.p1 .block { height: 210px; background: #FFD34E; }
+.pod.p2 .block { height: 150px; background: #D9DEE8; animation-delay: .4s; }
+.pod.p3 .block { height: 110px; background: #E6A96B; animation-delay: .8s; }
+.pod .pts { margin-top: 8px; font-weight: 800; color: var(--cb-grey); }
+@keyframes rise { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+
+.points-big { font-size: 42px; font-weight: 900; margin: 6px 0; }
+.big-msg.good .points-big { color: #fff; }
+@media (max-width: 800px) { .lb-grid { grid-template-columns: 1fr; } .pod { width: 110px; } .pod .name { font-size: 15px; } }
+@media (max-width: 480px) { body.player .brand small { display: none; } .me small { white-space: nowrap; } }
+
+/* ---- Admin tabs, live games, results (Step 10) ---- */
+.tabs { display: flex; gap: 8px; margin-bottom: 18px; border-bottom: 2px solid #E3E5E5; }
+.tab { background: none; border: 0; padding: 10px 16px; font-size: 16px; font-weight: 700; color: var(--cb-grey);
+       cursor: pointer; border-bottom: 4px solid transparent; margin-bottom: -2px; font-family: inherit; }
+.tab.active { color: var(--cb-dark); border-bottom-color: var(--cb-amber); }
+.live-card { border-top-color: #26890C; }
+.live-card .quiz-item { background: #F4FBF2; border-color: #CDE8C6; }
+.badge { display: inline-block; font-size: 12px; font-weight: 700; padding: 2px 8px; border-radius: 999px;
+         background: #E3E5E5; color: var(--cb-dark); margin-left: 6px; vertical-align: middle; }
+.badge.green { background: #D8F0D2; color: #1B5E20; }
+.badge.amber { background: #FFE9C2; color: #7A4B00; }
+.q-stat { padding: 12px 0; border-bottom: 1px solid #EEF0F0; }
+.q-stat:last-child { border-bottom: 0; }
+.q-stat .q { font-weight: 700; color: var(--cb-dark); }
+.q-stat .meta { font-size: 13px; color: var(--cb-grey); margin: 4px 0 6px; }
+.meter { height: 10px; background: #EEF0F0; border-radius: 999px; overflow: hidden; }
+.meter > div { height: 100%; background: #26890C; border-radius: 999px; }
+.meter.low > div { background: #E21B3C; }
+.meter.mid > div { background: #D89E00; }
+.center-row { justify-content: center; margin-top: 10px; }

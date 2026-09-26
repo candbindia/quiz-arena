@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>Quiz Arena · Join</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="player">
+  <header class="topbar">
+    <img data-logo>
+    <div class="brand"><strong data-app-name></strong><small data-org-name></small></div>
+    <span class="spacer"></span>
+    <div class="me" id="me"></div>
+  </header>
+
+  <main>
+    <!-- SCREEN 1: Enter the game PIN -->
+    <section id="pinScreen">
+      <div class="card narrow">
+        <h2>🎮 Join the quiz</h2>
+        <label for="pinInput">Game PIN</label>
+        <input id="pinInput" class="pin-input" inputmode="numeric" maxlength="6" placeholder="000000" autocomplete="off">
+        <p class="error" id="pinError"></p>
+        <button class="btn full" id="pinBtn">Next ▶</button>
+      </div>
+    </section>
+
+    <!-- SCREEN 2: Name + team (team list comes from the quiz) -->
+    <section id="nameScreen" class="hidden">
+      <div class="card narrow">
+        <div class="quiz-name" id="quizName"></div>
+        <label for="nameInput">Your name</label>
+        <input id="nameInput" maxlength="20" placeholder="e.g. Priya" autocomplete="off">
+        <div id="teamBox">
+          <label for="teamInput">Your team</label>
+          <select id="teamInput"></select>
+        </div>
+        <p class="error" id="joinError"></p>
+        <button class="btn full" id="joinBtn">Join ▶</button>
+        <button class="link-btn" id="changePinBtn">← Different PIN</button>
+      </div>
+    </section>
+
+    <!-- SCREEN 3: Answer buttons (during a question) -->
+    <section id="answerScreen" class="hidden">
+      <div class="p-status"><span id="pQuestion"></span><span id="pTimer"></span></div>
+      <div class="answer-grid" id="answerGrid"></div>
+    </section>
+
+    <!-- SCREEN 4: Waiting / messages / result -->
+    <section id="waitScreen" class="hidden">
+      <div class="card narrow big-msg" id="waitBox">
+        <div class="emoji" id="waitEmoji">🎉</div>
+        <h2 id="waitTitle">You're in!</h2>
+        <div class="points-big hidden" id="waitPoints"></div>
+        <p id="waitText">Look at the big screen. The quiz will start soon.</p>
+        <div class="spinner" id="spinner"></div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Firebase libraries -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+
+  <!-- Our files -->
+  <script src="config.js"></script>
+  <script src="theme.js"></script>
+  <script src="firebase.js"></script>
+  <script src="play.js"></script>
+</body>
+</html>

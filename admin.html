@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Quiz Arena · Admin</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <img data-logo>
+    <div class="brand"><strong data-org-name></strong><small>Admin panel</small></div>
+    <span class="spacer"></span>
+    <button class="btn ghost hidden" id="logoutBtn">Log out</button>
+  </header>
+
+  <main>
+    <!-- SCREEN 1: Login -->
+    <section id="loginScreen" class="hidden">
+      <div class="card narrow">
+        <h2>🔒 Admin login</h2>
+        <p>Enter the admin PIN to create and run quizzes.</p>
+        <label for="pin">Admin PIN</label>
+        <input id="pin" type="password" inputmode="numeric" autocomplete="off" class="pin-input" placeholder="••••••">
+        <p class="error" id="loginError"></p>
+        <button class="btn full" id="loginBtn">Log in</button>
+      </div>
+    </section>
+
+    <!-- Tabs (shown when logged in) -->
+    <nav class="tabs hidden" id="tabs">
+      <button class="tab active" data-tab="listScreen">📚 Quizzes</button>
+      <button class="tab" data-tab="resultsScreen">📊 Results</button>
+    </nav>
+
+    <!-- SCREEN 2: Quiz list + live games -->
+    <section id="listScreen" class="hidden">
+      <div class="card live-card hidden" id="liveCard">
+        <h2>🟢 Live games</h2>
+        <div id="liveList"></div>
+      </div>
+      <div class="page-head">
+        <h1>📚 My quizzes</h1>
+        <span class="spacer"></span>
+        <button class="btn" id="newQuizBtn">+ New quiz</button>
+      </div>
+      <div id="quizList"><p class="empty">⏳ Loading quizzes…</p></div>
+    </section>
+
+    <!-- SCREEN 4: Results history -->
+    <section id="resultsScreen" class="hidden">
+      <div class="page-head"><h1>📊 Results</h1></div>
+      <div id="resultList"><p class="empty">⏳ Loading results…</p></div>
+    </section>
+
+    <!-- SCREEN 5: One result in detail -->
+    <section id="resultScreen" class="hidden">
+      <div class="page-head">
+        <button class="btn ghost small" id="resultBackBtn">← Back</button>
+        <h1 id="rdTitle"></h1>
+        <span class="spacer"></span>
+        <button class="btn ghost small" id="rdCsvBtn">⬇ Download CSV</button>
+        <button class="btn danger small" id="rdDelBtn">🗑 Delete</button>
+      </div>
+      <p id="rdMeta"></p>
+      <div class="lb-grid">
+        <div class="card"><h2>🏆 Players</h2><div id="rdPlayers"></div></div>
+        <div class="card" id="rdTeamCard"><h2>👥 Teams</h2><div id="rdTeams"></div></div>
+      </div>
+      <div class="card" id="rdQCard">
+        <h2>❓ Questions</h2>
+        <p style="margin-top:0">Which questions people found hard. Useful for training follow-up.</p>
+        <div id="rdQuestions"></div>
+      </div>
+    </section>
+
+    <!-- SCREEN 3: Quiz editor -->
+    <section id="editScreen" class="hidden">
+      <div class="page-head">
+        <button class="btn ghost small" id="backBtn">← Back</button>
+        <h1 id="editTitle">New quiz</h1>
+      </div>
+
+      <div class="card">
+        <label for="quizTitle">Quiz title</label>
+        <input id="quizTitle" maxlength="80" placeholder="e.g. New Joiner Onboarding Quiz">
+        <label for="quizDesc">Description (optional)</label>
+        <input id="quizDesc" maxlength="150" placeholder="e.g. Company policies and tools for new team members">
+      </div>
+
+      <div class="card">
+        <label for="teamName">Teams (optional)</label>
+        <p style="margin-top:0">Players will pick one of these from a dropdown when they join. Leave empty for no teams.</p>
+        <div class="row">
+          <input id="teamName" maxlength="30" placeholder="e.g. Consulting" style="flex:1; margin:0">
+          <button class="btn ghost" id="addTeamBtn">+ Add team</button>
+        </div>
+        <div class="players" id="teamChips"></div>
+      </div>
+
+      <div id="questionList"></div>
+      <button class="btn ghost full" id="addQBtn">+ Add question</button>
+
+      <div class="save-bar">
+        <button class="btn" id="saveBtn">💾 Save quiz</button>
+        <span id="saveMsg"></span>
+      </div>
+    </section>
+
+    <p id="loading" style="text-align:center">⏳ Loading…</p>
+  </main>
+
+  <!-- Firebase libraries -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+
+  <!-- Our files -->
+  <script src="config.js"></script>
+  <script src="theme.js"></script>
+  <script src="firebase.js"></script>
+  <script src="results.js"></script>
+  <script src="admin.js"></script>
+</body>
+</html>

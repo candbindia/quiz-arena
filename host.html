@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Quiz Arena · Host</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <img data-logo>
+    <div class="brand"><strong data-org-name></strong><small data-app-name></small></div>
+    <span class="spacer"></span>
+    <span id="topPin" style="font-weight:700;color:var(--cb-grey)"></span>
+    <button class="btn danger small hidden" id="closeBtn">✖ Close game</button>
+  </header>
+
+  <main>
+    <p id="loading" style="text-align:center">⏳ Loading game…</p>
+
+    <!-- LOBBY: players join here -->
+    <section id="lobbyScreen" class="hidden">
+      <div class="host-bar">
+        <h1 id="quizTitle"></h1>
+        <span class="spacer"></span>
+        <button class="btn" id="startQuizBtn" disabled>▶ Start quiz</button>
+      </div>
+
+      <div class="lobby">
+        <div class="card join-box">
+          <p class="join-step">1. On your phone, open</p>
+          <div class="join-url" id="joinUrl"></div>
+          <p class="join-step">or scan the QR code</p>
+          <div id="qr"></div>
+          <div class="pin-label">2. Enter game PIN</div>
+          <div class="pin-big" id="pinBig"></div>
+        </div>
+
+        <div class="card">
+          <div class="count-big" id="playerCount">0</div>
+          <h2>players joined</h2>
+          <div class="players" id="playerList"><p>Waiting for players…</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- QUESTION: shown while players answer -->
+    <section id="questionScreen" class="hidden">
+      <div class="q-head">
+        <div class="timer" id="timer">20</div>
+        <div>
+          <div class="q-counter" id="qCounter"></div>
+          <div class="answered" id="answeredCount"></div>
+        </div>
+        <span class="spacer"></span>
+        <button class="btn ghost small" id="skipBtn">⏭ End question</button>
+      </div>
+      <div class="question-text" id="qText"></div>
+      <div class="options" id="qOptions"></div>
+    </section>
+
+    <!-- REVEAL: correct answer + how everyone answered -->
+    <section id="revealScreen" class="hidden">
+      <div class="question-text" id="rText" style="font-size:24px"></div>
+      <div class="bars" id="rBars"></div>
+      <div class="options" id="rOptions"></div>
+      <div class="center" style="margin-top:20px">
+        <button class="btn" id="nextBtn">Leaderboard ▶</button>
+      </div>
+    </section>
+
+    <!-- LEADERBOARD: between questions -->
+    <section id="leaderScreen" class="hidden">
+      <div class="host-bar">
+        <h1>🏆 Leaderboard</h1>
+        <span class="spacer"></span>
+        <span class="q-counter" id="lbCounter"></span>
+      </div>
+      <div class="lb-grid">
+        <div class="card"><div id="lbList"></div></div>
+        <div class="card" id="lbTeamCard"><h2>👥 Teams</h2><div id="lbTeams"></div></div>
+      </div>
+      <div class="center"><button class="btn" id="lbNextBtn">Next question ▶</button></div>
+    </section>
+
+    <!-- END: final results + podium -->
+    <section id="endScreen" class="hidden">
+      <div class="center"><h1>🎉 Final results</h1><p id="endTitle"></p></div>
+      <div class="podium" id="podium"></div>
+      <div class="lb-grid">
+        <div class="card"><h2>All players</h2><div id="finalList"></div></div>
+        <div class="card" id="finalTeamCard"><h2>🏆 Team ranking</h2><div id="finalTeams"></div></div>
+      </div>
+      <div class="row" style="justify-content:center">
+        <button class="btn ghost" id="csvBtn">⬇ Download results (CSV)</button>
+        <button class="btn" id="endCloseBtn">✔ Close game &amp; save results</button>
+      </div>
+    </section>
+
+    <!-- Shown if the PIN is wrong or the game is closed -->
+    <section id="errorScreen" class="hidden">
+      <div class="card narrow" style="text-align:center">
+        <h2 id="errorText"></h2>
+        <a class="btn" href="admin.html">← Back to admin</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Firebase libraries -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+  <!-- QR code library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+  <!-- Our files -->
+  <script src="config.js"></script>
+  <script src="theme.js"></script>
+  <script src="firebase.js"></script>
+  <script src="results.js"></script>
+  <script src="host.js"></script>
+</body>
+</html>
